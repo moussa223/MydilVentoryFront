@@ -1,0 +1,272 @@
+<div class="row">
+  <div class="col-sm-4 mb-3" *ngFor="let product of this.ProductData">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{product.photoUrl}}" style="height: 300px; object-fit: cover;" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><b>Nom: </b>{{product.name}}</p>
+        <p class="card-text"><b>Type: </b>{{product.type}}</p>
+        <b>Emplacement: </b><em>{{product.emplacement}}</em>
+        <br>
+        <b>Empruntable: </b><em>{{product.iEmpruntable}}</em>
+        <br>
+        <b>Référencé: </b><em>{{product.isReferenced}}</em>
+        <br>
+        <p class="card-text"><b>Description: </b>{{product.description}}</p>
+        <p class="card-text"><b>Désignation: </b>{{product.designation}}</p>
+        <p class="card-text"><b>Commentaires: </b>{{product.commentaires}}</p>
+        <p class="card-text"><b>Quantité disponible: </b>{{product.quantiteDispo}}</p>
+        <p class="card-text"><b>Date d'achat: </b>{{product.dateAchat}}</p>
+        <br>
+        <a href="#" class="btn btn-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+          </svg>
+        </a>
+        <button class="btn btn-warning ml-3" (click)="selectProduct(product)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+          </svg>
+        </button>
+        <a href="#" class="btn btn-danger ml-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--  ----------------------------------- Pop Up Update Product -------------------------  -->
+
+<!-- <input type="text" [value]="selectedClass.infos"> pour la modification d'un produit donc le formulaire cotiendra
+ les infos du produit par défaut et ça sera à l'utilisateur de le modifier ou pas -->
+
+<div class="background-overlay" *ngIf="isUpdateProductPopUpOpen" (close)="closeUpdateProductPopup()"></div>
+<div class="popup-container" *ngIf="isUpdateProductPopUpOpen" (close)="closeUpdateProductPopup()">
+  <div class="row">
+  </div>
+
+  <form>
+    <!-- Debut champs de formulaire ici -->
+    <div class="row">
+      <form>
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+          Modification de l'Objet
+        </h6>
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Nom
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.name}}"
+                [(ngModel)]="UpdateProductDto.name"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Type
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.type}}"
+                [(ngModel)]="UpdateProductDto.type"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Description
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.description}}"
+                [(ngModel)]="UpdateProductDto.description"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Quantité Disponible
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.quantiteDispo}}"
+                [(ngModel)]="UpdateProductDto.quantiteDispo"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Designation
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.designation}}"
+                [(ngModel)]="UpdateProductDto.designation"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Commentaires
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.commentaires}}"
+                [(ngModel)]="UpdateProductDto.commentaires"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap">
+
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Date achat
+              </label>
+              <input
+                type="date"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.dateAchat}}"
+                [(ngModel)]="UpdateProductDto.dateAchat"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Empruntable ?
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.iEmpruntable}}"
+                [(ngModel)]="UpdateProductDto.iEmpruntable"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-4/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Référencé ?
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.isReferenced}}"
+                [(ngModel)]="UpdateProductDto.isReferenced"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Emplacement
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="{{selectedProduct.emplacement}}"
+                [(ngModel)]="UpdateProductDto.emplacement"
+              />
+            </div>
+          </div>
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Photo
+              </label>
+              <input
+                type="text"
+                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Ex: Url"
+                [(ngModel)]="UpdateProductDto.photoUrl"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <!-- Fin champs de formulaire -->
+    <button type="submit" class="btn btn-sm btn-warning mr-2 mt-1" (click)="UpdateProduct()">Modifier</button>
+    <button type="button" class="btn btn-sm btn-danger mt-1" *ngIf="isUpdateProductPopUpOpen" (click)="closeUpdateProductPopup()">Annuler</button>
+  </form>
+</div>
+<!--  ----------------------------------- End Pop Up Update Product  -------------------------  -->
+<style>
+  /*------------------------------------- popUp pour la modification d'un produit ------------------------------------------*/
+  .popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+
+  .background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+</style>
