@@ -25,6 +25,7 @@ export class SettingService {
   private AddProductUrl = 'https://localhost:7012/api/Product/Create';
   private GetAllProductUrl = 'https://localhost:7012/api/Product/GetAllProducts';
   private UpdateProductUrl = 'https://localhost:7012/api/Product/Update';
+  private DeleteProductUrl = 'https://localhost:7012/api/Product/Delete';
   constructor(private http: HttpClient) { }
 
   // --------------------------Get All Products------------------------
@@ -56,4 +57,16 @@ export class SettingService {
     // Appel de la méthode Http put UpdateProduct de l'API
     return this.http.put(`${this.UpdateProductUrl}/${ProductId}`, updatedProductDto, {headers});
   }
+  // ---------------- Delete Product ------------------------------------
+  DeleteCourseFromProduct(productId: number): Observable<any>{
+    // Récupérer le token depuis le local storage
+    const token = localStorage.getItem('usingsecretkeyforapp');
+    // Ajout du token dans le header de la réquête
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    // Appel de la méthode Http put UpdateProduct de l'API
+    return this.http.delete(`${this.DeleteProductUrl}/${productId}`, {headers});
+  }
+  //
 }

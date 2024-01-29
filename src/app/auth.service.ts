@@ -8,6 +8,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class AuthService {
   private token: string | null = null;
+  private refreshToken:any;
   private tokenKey = 'usingsecretkeyforapp'; // même clé utilisée au niveau du back
   private apiLoginUrl = 'https://localhost:7012/api/AuthContoller/Login'; //  l'URL de l' API
   model: any = {
@@ -25,7 +26,11 @@ export class AuthService {
       (response: any) => {
         // Si la requête réussit, enregistrez le token
         this.token = response.data.accessToken.token; // Assurez-vous que la structure de la réponse correspond à votre API
+        // Récupération de l'id de l'utilisateur qui est connecté
+        this.refreshToken = response.data.refreshToken.appUserId;
+        // on enregistre le token et l'id de l'utilisateur connecté dans le local storage
         localStorage.setItem(this.tokenKey, this.token);
+        localStorage.setItem('refreshToken',this.refreshToken)
         alert('Connexion reussi');
         console.log(response)
         this.model.loginDto.userNameOrEmail = '';
