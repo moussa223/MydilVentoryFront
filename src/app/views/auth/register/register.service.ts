@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http"
+import {HttpClient} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,9 @@ export class RegisterService {
     isAdmin: false
   };
   confirmPassword: '';
-  private apiRegisterUrl = 'https://localhost:7012/api/AuthContoller/Register'; //  l'URL de l' API
+  // L'adresse de l'api de prod: https://keepschool.azurewebsites.net/api/AuthContoller/Register
+  // L'adresse de l'api en local : https://localhost:7012/api/AuthContoller/Register
+  private apiRegisterUrl = 'https://keepschool.azurewebsites.net/api/AuthContoller/Register'; //  l'URL de l' API
 
   constructor(private http:HttpClient) { }
   registerUser() {

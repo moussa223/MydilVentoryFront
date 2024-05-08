@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-/dist
+#/dist
+# ajouter le fichier /dist après mes tests
 /.angular
 
 # local env files
