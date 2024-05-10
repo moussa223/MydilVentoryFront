@@ -10,7 +10,7 @@ export class AuthService {
   private token: string | null = null;
   private refreshToken:any;
   private tokenKey = 'usingsecretkeyforapp'; // même clé utilisée au niveau du back
-  private apiLoginUrl = 'https://localhost:7012/api/AuthContoller/Login'; //  l'URL de l' API
+  private apiLoginUrl = 'https://keepschool.azurewebsites.net/api/AuthContoller/Login'; //  l'URL de l' API
   model: any = {
     loginDto: {
       userNameOrEmail: '',

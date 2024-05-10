@@ -21,10 +21,10 @@ export class EmpruntService {
       ]
     }
   };
-  private GetAllEmpruntUrl = 'https://localhost:7012/api/Emprunt/GetAllEmprunts';
-  private AddEmpruntUrl = 'https://localhost:7012/api/Emprunt/Create';
-  private UpdateEmpruntUrl = 'https://localhost:7012/api/Emprunt/Update';
-  private DeleteEmpruntUrl = 'https://localhost:7012/api/Emprunt/Delete';
+  private GetAllEmpruntUrl = 'https://keepschool.azurewebsites.net/api/Emprunt/GetAllEmprunts';
+  private AddEmpruntUrl = 'https://keepschool.azurewebsites.net/api/Emprunt/Create';
+  private UpdateEmpruntUrl = 'https://keepschool.azurewebsites.net/api/Emprunt/Update';
+  private DeleteEmpruntUrl = 'https://keepschool.azurewebsites.net/api/Emprunt/Delete';
   constructor(private http:HttpClient) { }
   // --------------------------Get All Emprunts------------------------
   getAllEmprunts(): Observable<any[]>{

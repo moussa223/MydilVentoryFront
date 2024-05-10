@@ -22,10 +22,10 @@ export class SettingService {
       photoUrl: ''
     }
   };
-  private AddProductUrl = 'https://localhost:7012/api/Product/Create';
-  private GetAllProductUrl = 'https://localhost:7012/api/Product/GetAllProducts';
-  private UpdateProductUrl = 'https://localhost:7012/api/Product/Update';
-  private DeleteProductUrl = 'https://localhost:7012/api/Product/Delete';
+  private AddProductUrl = 'https://keepschool.azurewebsites.net/api/Product/Create';
+  private GetAllProductUrl = 'https://keepschool.azurewebsites.net/api/Product/GetAllProducts';
+  private UpdateProductUrl = 'https://keepschool.azurewebsites.net/api/Product/Update';
+  private DeleteProductUrl = 'https://keepschool.azurewebsites.net/api/Product/Delete';
   constructor(private http: HttpClient) { }
 
   // --------------------------Get All Products------------------------
