@@ -63,7 +63,8 @@ export class MapExampleComponent implements OnInit {
         // Gérez la réponse de l'API ici
         console.log(response);
         // Rechargez la page après une réponse réussie
-        window.location.reload();
+        // window.location.reload();
+        this.router.navigate(['admin/maps'])
       },
       (error) => {
         // Gérez les erreurs ici
@@ -88,7 +89,8 @@ export class MapExampleComponent implements OnInit {
         // Gérez la réponse de l'API ici
         console.log(response);
         // Rechargez la page après une réponse réussie
-        window.location.reload();
+        // window.location.reload();
+        this.router.navigate(['admin/maps'])
       },
       (error) => {
         // Gérez les erreurs ici
@@ -128,6 +130,7 @@ export class MapExampleComponent implements OnInit {
   selectEmpruntToDelete(emprunt:any): void{
     this.selectedEmprunt = emprunt;
     this.DeleteEmprunt();
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigate(['admin/maps']);
   }
 }

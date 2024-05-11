@@ -28,7 +28,8 @@ export class CardSettingsComponent implements OnInit {
   onSubmit() {
     this.CreateProduct();
     // Rechargez la page après une réponse réussie
-    // window.location.reload();
-    this.router.navigate(['admin/settings'])
+    // window.location.reload(); // cela ne fonctionne pas en prod sur le serveur Azure
+    this.router.navigate(['admin/tables']) // d'après mon experience, il est bon de faire router.navigate car
+    // cela fonctionne en prod et non window.lacation.reload
   }
 }

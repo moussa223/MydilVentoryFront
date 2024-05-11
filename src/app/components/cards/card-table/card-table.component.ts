@@ -66,7 +66,8 @@ export class CardTableComponent implements OnInit {
     // fermeture du popup Après le traitement
     this.closeCreateEmpruntPopup();
     // Rechargez la page après une réponse réussie
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigate(['admin/maps'])
   }
   // ------------------------- Create Emprunt -------------------------
   CreateEmprunt(){
@@ -96,7 +97,8 @@ export class CardTableComponent implements OnInit {
     this.selectedProduct = product;
     this.DeleteProduct();
     // Je recharge la page
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigate(['admin/maps'])
   }
   // ------------------ Open Create Emprunt pop up ---------------------------
   selectCreateEmpruntPopUp(product:any): void{
@@ -114,7 +116,8 @@ export class CardTableComponent implements OnInit {
         // fermeture du popup Après le traitement
         this.closeUpdateProductPopup();
         // Rechargez la page après une réponse réussie
-        window.location.reload();
+        // window.location.reload();
+        this.router.navigate(['admin/tables'])
       },
       (error) => {
         // Gérez les erreurs ici
