@@ -28,6 +28,7 @@ export class CardSettingsComponent implements OnInit {
   onSubmit() {
     this.CreateProduct();
     // Rechargez la page après une réponse réussie
-    window.location.reload();
+    // window.location.reload();
+    this.router.navigate(['admin/settings'])
   }
 }
